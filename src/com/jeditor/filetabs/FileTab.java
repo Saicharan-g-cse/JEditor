@@ -6,13 +6,14 @@ import com.jeditor.utils.UserDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import java.awt.Font;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
 
 public class FileTab extends JTextPane {
     private static final LinkedList<FileTab> currentFileTabs;
-    private final String file;
+    private final File file;
     private JScrollPane jScrollPane = null;
     private String fileText;
     private SyntaxHighlighter syntaxHighlighter;
@@ -21,7 +22,7 @@ public class FileTab extends JTextPane {
         currentFileTabs = new LinkedList<>();
     }
 
-    public FileTab(String file) {
+    public FileTab(File file) {
         this.file = file;
         if (!readFileContent())
             return;
@@ -31,7 +32,7 @@ public class FileTab extends JTextPane {
     }
 
     private boolean readFileContent() {
-        Path filePath = Path.of(file);
+        Path filePath = Path.of(file.toURI());
         try {
             fileText = Files.readString(filePath);
         }
@@ -42,7 +43,7 @@ public class FileTab extends JTextPane {
         return true;
     }
 
-    public static JScrollPane addFileTab(String file) {
+    public static JScrollPane addFileTab(File file) {
         FileTab tab = new FileTab(file);
         tab.setText(tab.fileText);
         currentFileTabs.add(tab);

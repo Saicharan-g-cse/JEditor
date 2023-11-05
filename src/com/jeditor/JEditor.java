@@ -1,6 +1,6 @@
 package com.jeditor;
 
-import com.jeditor.filetabs.FileTab;
+import com.jeditor.ui.JEMenu;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -9,8 +9,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 public final class JEditor extends JFrame implements Runnable {
-    private final JTabbedPane jTabbedPane;
-    private static JFrame jFrame = null;
+    private static JTabbedPane jTabbedPane;
+    private static JFrame jFrame;
 
     static {
         try {
@@ -40,18 +40,19 @@ public final class JEditor extends JFrame implements Runnable {
         setSize(800, 600);
     }
 
+    @Override
+    public void run() {
+        initFrame();
+        setJMenuBar(new JEMenu(this));
+        getContentPane().add(jTabbedPane);
+        setVisible(true);
+    }
+
     public static JFrame getjFrame() {
         return jFrame;
     }
 
-    @Override
-    public void run() {
-        initFrame();
-
-        jTabbedPane.addTab("Test.java", FileTab.addFileTab("Test.java"));
-        jTabbedPane.addTab("Test.java", FileTab.addFileTab("Test.java"));
-
-        getContentPane().add(jTabbedPane);
-        setVisible(true);
+    public static JTabbedPane getTabbedPane() {
+        return jTabbedPane;
     }
 }
