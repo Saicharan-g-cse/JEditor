@@ -25,7 +25,7 @@ public class FileTab extends JTextPane {
         this.file = file;
         if (!readFileContent())
             return;
-        setFont(new Font("Monospaced", Font.PLAIN, 12));
+        setFont(new Font("Monospaced", Font.PLAIN, 14));
         jScrollPane = new JScrollPane(this);
         syntaxHighlighter = new SyntaxHighlighter(this, "java");
     }

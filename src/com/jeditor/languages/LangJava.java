@@ -27,10 +27,10 @@ public class LangJava {
         };
         String[] secondaryKeyWords = {
                 "abstract", "boolean", "byte", "char", "class", "double", "extends", "final", "float", "implements",
-                "interface", "long", "public", "private", "protected", "short", "static", "strictfp", "throws", "volatile"
+                "interface", "long", "void", "int", "public", "private", "protected", "short", "static", "strictfp", "throws", "volatile"
         };
         String[] specialKeyWords = {
-                "import", "package", "null"
+                "import", "package", "null", "true", "false"
         };
 
         keyWords.put("primaryKeyWords", new KeyWords(primaryKeyWords, new Color(219, 68, 55)));
